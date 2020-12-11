@@ -1,0 +1,63 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Emotions" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/orangeFFA500</item>
+        <item name="colorAccent">@color/orangeFFEDCC</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor">@color/orangeFFA500</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/orangeFFA500</item>
+    </style>
+
+    <!-- About Us Theme Started-->
+    <style name="AboutUsAlertDialogStyle" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/orangeFFEDCC</item>
+        <item name="shapeAppearanceMediumComponent">@style/AlertRoundedShapeAppearance</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AlertTitleStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertBodyTextStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/NeutralButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/orangeFFA500</item>
+        <item name="rippleColor">@color/orangeFFEDCC</item>
+        <item name="fontFamily">@font/rm</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/orangeFFA500</item>
+        <item name="rippleColor">@color/orangeFFA500</item>
+        <item name="fontFamily">@font/rr</item>
+
+    </style>
+
+    <style name="NeutralButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/orangeFFA500</item>
+        <item name="rippleColor">@color/orangeFFA500</item>
+        <item name="fontFamily">@font/rr</item>
+
+    </style>
+
+    <style name="AlertRoundedShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+    <style name="AlertTitleStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AlertBodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/rr</item>
+    </style>
+
+
+    <!-- About Us Theme Ended-->
+</resources>

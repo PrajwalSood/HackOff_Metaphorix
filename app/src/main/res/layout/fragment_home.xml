@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_toolbar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnImage"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:background="@drawable/button_home_bg"
+        android:gravity="bottom|center_horizontal"
+        android:paddingBottom="16dp"
+        android:text="Image Mode"
+        android:textColor="@color/green538C49"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:layout_marginBottom="75dp"
+        android:src="@drawable/ic_btn_image"
+        app:layout_constraintBottom_toBottomOf="@+id/btnImage"
+        app:layout_constraintEnd_toEndOf="@+id/btnImage"
+        app:layout_constraintStart_toStartOf="@+id/btnImage" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnVideo"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:background="@drawable/button_home_bg"
+        android:gravity="bottom|center_horizontal"
+        android:paddingBottom="16dp"
+        android:text="Mirror Mode"
+        android:layout_marginTop="64dp"
+        android:textColor="@color/green538C49"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnImage"
+        app:layout_constraintStart_toStartOf="@+id/btnImage"
+        app:layout_constraintTop_toBottomOf="@+id/btnImage" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/ic_btn_video"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVideo"
+        app:layout_constraintEnd_toEndOf="@+id/btnVideo"
+        app:layout_constraintStart_toStartOf="@+id/btnVideo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

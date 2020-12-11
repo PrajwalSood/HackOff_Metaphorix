@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.shivam.emotions.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.shivam.emotions.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.shivam.emotions.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image">
+        <argument
+            android:name="fileURI"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivFace"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/face_item_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivFace" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmotion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/green538C49"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_bg"
+        app:layout_constraintStart_toEndOf="@+id/ivFace"
+        app:layout_constraintTop_toTopOf="@+id/view_bg"
+        tools:text="Happy" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCompoundEmotion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/orangeFFA500"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+        app:layout_constraintEnd_toEndOf="@+id/tvEmotion"
+        app:layout_constraintStart_toStartOf="@+id/tvEmotion"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmotion"
+        tools:text="Delighted" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
