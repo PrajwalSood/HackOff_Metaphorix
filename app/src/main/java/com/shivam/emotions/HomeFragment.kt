@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment() {
 
 
         homeBinding.btnVideo.setOnClickListener {
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPermissionFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCameraFragment())
         }
 
         homeBinding.btnImage.setOnClickListener {
