@@ -28,7 +28,6 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showInputShareDialog()
 
 
         val receiveImageIntent = requireActivity().intent
@@ -65,21 +64,5 @@ class HomeFragment : BaseFragment() {
         shouldNavigate = false
     }
 
-    private fun showInputShareDialog() {
-        val imageDialog =
-            MaterialAlertDialogBuilder(requireContext(), R.style.AboutUsAlertDialogStyle)
-        imageDialog.setTitle("Did you know ?")
-
-        val dialogLayout = layoutInflater.inflate(R.layout.image_input_share, null)
-        imageDialog.setView(dialogLayout)
-
-        imageDialog.setNegativeButton("Cool") { dialog, which ->
-            dialog.dismiss()
-        }
-        imageDialog.setMessage("You can share images from other apps and analyse the emotions of people present in them directly in our app")
-        imageDialog.show()
-
-
-    }
 
 }
