@@ -1,6 +1,6 @@
 package com.shivam.emotions.tfmodels.emotion;
 
-import org.amlohapps.expression.util.EmotionConstants;
+import com.shivam.emotions.util.EmotionConstants;
 
 import java.util.Arrays;
 import java.util.Collections;

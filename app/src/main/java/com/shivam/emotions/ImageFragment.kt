@@ -22,6 +22,16 @@ import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.shivam.emotions.adapter.ImageEmotionAdapter
 import com.shivam.emotions.databinding.FragmentImageBinding
 import com.shivam.emotions.model.ImageEmotionModel
+import com.shivam.emotions.tfmodels.arousal.ArousalNetClassifier
+import com.shivam.emotions.tfmodels.arousal.ArousalNetConfig
+import com.shivam.emotions.tfmodels.arousal.ClassificationArousal
+import com.shivam.emotions.tfmodels.emotion.ClassificationEmotion
+import com.shivam.emotions.tfmodels.emotion.PrajuNetClassifier
+import com.shivam.emotions.tfmodels.emotion.PrajuNetConfig
+import com.shivam.emotions.tfmodels.valence.ClassificationValence
+import com.shivam.emotions.tfmodels.valence.ValenceNetClassifier
+import com.shivam.emotions.tfmodels.valence.ValenceNetConfig
+import com.shivam.emotions.util.EmotionUtil
 import com.shivam.emotions.util.ImagePickerUtil
 import com.shivam.emotions.util.PermissionsUtilCallback
 
@@ -33,6 +43,9 @@ class ImageFragment : ImagePickerUtil() {
     private lateinit var imageBinding: FragmentImageBinding
     private lateinit var detector: FaceDetector
     private lateinit var imageEmotionAdapter: ImageEmotionAdapter
+    private lateinit var prajuNetClassifier: PrajuNetClassifier
+    private lateinit var arousalNetClassifier: ArousalNetClassifier
+    private lateinit var valenceNetClassifier: ValenceNetClassifier
 
 
 
@@ -91,6 +104,46 @@ class ImageFragment : ImagePickerUtil() {
         }
 
 
+    }
+
+
+    private fun loadPrajuNetClassifier() {
+        try {
+            prajuNetClassifier =
+                PrajuNetClassifier.classifier(
+                    requireActivity().assets,
+                    PrajuNetConfig.MODEL_FILENAME
+                )
+        } catch (e: IOException) {
+            Timber.d("PrajuNet model couldn't be loaded. Check logs for details.")
+            e.printStackTrace()
+        }
+    }
+
+    private fun loadArousalNetClassifier() {
+        try {
+            arousalNetClassifier =
+                ArousalNetClassifier.classifier(
+                    requireActivity().assets,
+                    ArousalNetConfig.MODEL_FILENAME
+                )
+        } catch (e: IOException) {
+            Timber.e("ArousalNet model couldn't be loaded. Check logs for details.")
+            e.printStackTrace()
+        }
+    }
+
+    private fun loadValenceNetClassifier() {
+        try {
+            valenceNetClassifier =
+                ValenceNetClassifier.classifier(
+                    requireActivity().assets,
+                    ValenceNetConfig.MODEL_FILENAME
+                )
+        } catch (e: IOException) {
+            Timber.e("ValenceNet model couldn't be loaded. Check logs for details.")
+            e.printStackTrace()
+        }
     }
 
 
@@ -153,6 +206,12 @@ class ImageFragment : ImagePickerUtil() {
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             imageBinding.rvEmotions.adapter = imageEmotionAdapter
 
+            if (!this::prajuNetClassifier.isInitialized)
+                loadPrajuNetClassifier()
+            if (!this::valenceNetClassifier.isInitialized)
+                loadValenceNetClassifier()
+            if (!this::arousalNetClassifier.isInitialized)
+                loadArousalNetClassifier()
 
             var drawBitmap = scaledBitmap
             detector.process(InputImage.fromBitmap(scaledBitmap, 0))
@@ -191,17 +250,48 @@ class ImageFragment : ImagePickerUtil() {
 
                                 val finalBitmap = bitmapUtils.preparePrajuNetBitmap(faceBitmap)
 
+                                val emotions: List<ClassificationEmotion> =
+                                    prajuNetClassifier.recognizeImage(finalBitmap)
+
+                                val arousals: List<ClassificationArousal> =
+                                    arousalNetClassifier.recognizeImage(finalBitmap)
+
+                                val valences: List<ClassificationValence> =
+                                    valenceNetClassifier.recognizeImage(finalBitmap)
+                                var cEmotion = ""
+                                try {
+                                    cEmotion = EmotionUtil.compoundEmotion(
+                                        emotions[0],
+                                        arousals[0],
+                                        valences[0]
+                                    )
 
 
+                                } catch (e: Exception) {
+                                    Timber.e("Error in Compound Emotion $e")
+
+                                }
+
+                                if (emotions.isNotEmpty()) {
                                     faceList.add(
                                         ImageEmotionModel(
                                             face.trackingId!!,
                                             faceBitmap,
-                                            "Emotion",
-                                            "Compound Emotion"
+                                            emotions[0].toString(),
+                                            cEmotion
                                         )
                                     )
-
+                                }
+                                else{
+                                    faceList.add(
+                                        ImageEmotionModel(
+                                            face.trackingId!!,
+                                            faceBitmap,
+                                            "No conclusive Emotion",
+                                            ""
+                                        )
+                                    )
+                                }
 
                                 imageBinding.ivUserImage.load(drawBitmap)
                                 imageBinding.rvEmotions.visibility = View.VISIBLE
